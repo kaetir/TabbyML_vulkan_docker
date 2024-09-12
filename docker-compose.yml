@@ -1,0 +1,15 @@
+version: '3.5'
+
+services:
+  tabby:
+    restart: unless-stopped
+    image: my_tabby_vulkan
+    build: .
+    # command: serve --model StarCoder-1B --chat-model Qwen2-1.5B-Instruct --device vulkan
+    command: serve --model DeepseekCoder-1.3B --chat-model Mistral-7B --device vulkan
+    volumes:
+      - "$HOME/.tabby:/data"
+    ports:
+      - 127.0.0.1:8080:8080
+    environment:
+      - TABBY_ROOT=/data
